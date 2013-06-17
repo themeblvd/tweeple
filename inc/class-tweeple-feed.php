@@ -11,7 +11,7 @@ class Tweeple_Feed {
     private $do_cache = true;
     private $access = array();
     private $feed_post = null;
-	private $feed = null;
+    private $feed = null;
     private $raw_feed = null;
     private $error = '';
 
