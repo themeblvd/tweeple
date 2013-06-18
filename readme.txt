@@ -118,6 +118,8 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.2.0 =
 
+* Improved error handling when Authentication options are blank.
+
 = 0.1.0 =
 
 * This is the first release.

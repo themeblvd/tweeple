@@ -31,6 +31,7 @@ class Tweeple_Admin {
 		add_action( 'admin_init', array( $this, 'save_feed' ) );
 		add_action( 'admin_init', array( $this, 'delete_feeds' ) );
 		add_action( 'admin_init', array( $this, 'delete_feed_cache' ) );
+		add_action( 'current_screen', array( $this, 'access_notice' ) );
 	}
 
 	/**
@@ -777,6 +778,50 @@ class Tweeple_Admin {
 			update_post_meta( $post_id, $key, $value );
 
 		}
+	}
+
+	/**
+	 * Display notice if "Authorization" settings
+	 * haven't been setup yet.
+	 *
+	 * @since 0.2.0
+	 */
+	public function access_notice() {
+
+		// Make sure it's our admin page.
+		$current = get_current_screen();
+		if( $current->base != $this->base )
+			return;
+
+		$is_valid = true;
+		$settings = get_option( $this->access_id );
+
+		if( ! $settings )
+			$is_valid = false;
+
+		// Ok, so the settings exist, but were all of them stored?
+		if( $is_valid ) {
+			$options = array( 'consumer_key', 'consumer_secret', 'user_token', 'user_secret' );
+			foreach( $options as $option ) {
+				if( empty( $settings[$option] ) ) {
+					$is_valid = false;
+					break;
+				}
+			}
+		}
+
+		// If everything is still valid, we
+		// can get out of here.
+		if( $is_valid )
+			return;
+
+		// BUT, if we're still here, it means settings haven't
+		// been setup right.
+		$link = sprintf( '<a href="%s">%s</a>', admin_url( $this->parent.'?page=tweeple&tab=authentication' ), __('authentication settings', 'tweeple') );
+		$message = sprintf( __( 'Before any feeds can pull from Twitter, you need to setup all %s.', 'tweeple' ), $link );
+
+		add_settings_error( 'tweeple_feed_manage', 'save_options', $message, 'error' );
+		add_settings_error( 'tweeple_feed_config', 'save_options', $message, 'error' );
 	}
 
 	/*--------------------------------------------*/
