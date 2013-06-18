@@ -11,15 +11,15 @@ Create custom Twitter feeds to show on your website using Twitter API.
 
 For all you fellow tweeple, this is the plugin for you. Sure, there are tons of Twitter WordPress plugins already out there, but Tweeple gives you a more [ThemeBlvd](http://themeblvd.com)-ish approach to things.
 
-*NOTE: This plugin does NOT require a theme with Theme Blvd framework. This is a plugin for all tweeple!*
+*Note: This plugin does NOT require a theme with Theme Blvd framework. This is a plugin for all tweeple!*
 
 = How it works =
 
-**Authentication**: After setting up your credentials with Twitter API ([see FAQ](http://wordpress.org/plugins/tweeple/faq/)), you can utilize Tweeple to pull from Twitter API for your WordPress website.
+**Authentication**: After setting up your credentials with Twitter API -- [see FAQ](http://wordpress.org/plugins/tweeple/faq/) -- you can utilize Tweeple to pull from Twitter API for your WordPress website.
 
-**Twitter Feeds**: You can setup as many Twitter Feeds on your site as you want, and they're all manged from one location at *WP Admin > Tools > Tweeple*. A Twitter feed can be configured to pull a Twitter user's public timeline, public list, favorite tweets, or a custom search term, phrase, or hashtag.
+**Twitter Feeds**: You can setup as many Twitter Feeds on your site as you want, and manage them all from one location at *WP Admin > Tools > Tweeple*. A Twitter feed can be configured to pull a Twitter user's public timeline, public list, favorite tweets, or a custom search term, phrase, or hashtag.
 
-**Implmentation**: You can display any of your Twitter feeds on your website via the "Tweeple Twitter Feed" widget or the `[tweeple_feed]` shortcode. [See Usage Instructions](http://wordpress.org/plugins/tweeple/installation/).
+**Implmentation**: You can display any of your Twitter feeds on your website via the "Tweeple Twitter Feed" widget or the `[tweeple_feed]` shortcode. -- [See Usage Instructions](http://wordpress.org/plugins/tweeple/installation/).
 
 = Contributing =
 
@@ -29,7 +29,7 @@ Tweeple is a free plugin for everyone. If you find bugs, or have suggestions, pl
 
 = A note to Theme Blvd customers =
 
-If you are currently using a Theme Blvd theme, you have most likely noticed that the Theme Blvd Twitter widget included no longer works, as of June 2013, because of changes to Twitter's API system. We truly apologize for this inconvenience.
+If you're currently using a Theme Blvd theme, you probably noticed that the Theme Blvd Twitter widget included no longer works, as of June 2013, because of changes to Twitter's API system. We apologize for this inconvenience.
 
 If you'd like to keep our Twitter functionality, you'll want to use this plugin as a replacement. Using this plugin's "Tweeple Twitter Feed" widget with your current Theme Blvd theme should give you an almost identical result on the frontend of your website as the old widget gave you.
 
@@ -62,11 +62,11 @@ Think of your WordPress website as the "application" -- Once you have these cred
 
 After installing Tweeple, in your WordPress admin, go to *Tools > Tweeple > Authentication* and you'll find your Twitter API application settings.
 
-To create your "application" login to Twitter, and go to: [https://dev.twitter.com/apps](https://dev.twitter.com/apps)
+To create your "application," login to Twitter, and go to: [https://dev.twitter.com/apps](https://dev.twitter.com/apps)
 
 Create an application, and then create a user token for that application ([See Video](https://vimeo.com/59573397)).
 
-After you're done, you'll need to plugin the following information to Tweeple at *WP Admin > Tools > Tweeple > Authentication*:
+After you're done, you'll need to put in the following information to Tweeple at *WP Admin > Tools > Tweeple > Authentication*:
 
 * Consumer key
 * Consumer secret
@@ -75,7 +75,7 @@ After you're done, you'll need to plugin the following information to Tweeple at
 
 = Does it matter what account I setup my Twitter developer application under? =
 
-Nope. The account you create your developer application at Twitter under doesn't really matter. Once you have your authorization credentials setup, you'll be able to use Tweeple to pull tweets from any public Twitter account, list, or search.
+Nope. The Twitter account you create your developer application with doesn't really matter. Once you have your authorization credentials setup, you'll be able to use Tweeple to pull tweets from any public Twitter account, list, or search.
 
 = I posted to Twitter, but it's not showing up on my website right away. What gives? =
 
@@ -85,13 +85,13 @@ This is because of caching. Tweeple stores the information retrieved from Twitte
 
 In the process of pulling from Twitter API for your website, caching is crucial. It is a big process for your web server to go out and pull from Twitter. So, you don't want Tweeple pulling from Twitter every time someone visits your website.
 
-Additionally, Twitter API implements [rate limits](https://dev.twitter.com/docs/rate-limiting/1.1/limits). So, in theory, if you had consistent traffic coming to your website and your server *could* handle pulling from Twitter on every page load without exploding, Twitter API would keep cutting your server's IP address off.
+Additionally, Twitter API has [rate limits](https://dev.twitter.com/docs/rate-limiting/1.1/limits). So, in theory, if you had consistent traffic coming to your website and your server *could* handle pulling from Twitter on every page load without exploding, Twitter API would keep cutting your server's IP address off.
 
 = Can I manually clear a Twitter feed's cache? =
 
 Yup! Let's say you've just posted a breaking Tweet that's really important and you want your website visitors to see it right away. --
 
-Just go to *WP Admin > Tools > Tweeple > Twitter Feeds* and click the button to clear a specific Twitter feed's cache. After this, the next visitor to your website will trigger Tweeple to go out to Twitter and pull the latest tweets.
+Just go to *WP Admin > Tools > Tweeple > Twitter Feeds* and click the button to clear a specific Twitter feed's cache. After this, the next visitor to your website will trigger Tweeple to go out to Twitter and pull the latest tweets to be stored in the cache again.
 
 Also note that any time you update a Twitter feed's settings, the feed's cache is cleared automatically.
 
@@ -105,7 +105,12 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 == Screenshots ==
 
-// ... @todo
+1. Manage the Twitter feeds you've created.
+2. Edit a Twitter feed.
+3. Grab your application credentials from Twitter.dev and put them in the plugin's Authorization settings.
+4. Use the "Tweetster Twitter Feed" widget to display tweets in one of your widget areas.
+5. Should fit naturally into most themes with no frontend styling added by the plugin.
+6. If you're using a Theme Blvd theme, the widget will integrate as your old Theme Blvd Twitter widget did.
 
 == Changelog ==
 
