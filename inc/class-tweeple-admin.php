@@ -1096,6 +1096,17 @@ class Tweeple_Admin {
 	 */
 	function validate_access( $input ) {
 
+		// Dump Twitter feed caches
+		if( ! $this->sanitized ) {
+
+			$tweeple = Tweeple::get_instance();
+			$feeds = $tweeple->get_feeds();
+
+			foreach( $feeds as $key => $value )
+				delete_transient( 'tweeple_'.$key );
+
+		}
+
 		// Clear options
 		if( isset( $input['clear'] ) ) {
 

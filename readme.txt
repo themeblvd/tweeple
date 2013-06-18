@@ -118,8 +118,7 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.2.0 =
 
-* Improved error handling when Authentication options are blank.
-* Fixed double success notice when saving Authentication settings the first time.
+* Improved saving and handling notices for Authentication settings page.
 
 = 0.1.0 =
 
