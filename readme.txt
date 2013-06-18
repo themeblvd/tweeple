@@ -5,7 +5,7 @@ Tags: twitter, api, status, tweets, list, favorites, tmhOAuth, Theme Blvd, theme
 Stable Tag: 0.2.0
 Tested up to: 3.6
 
-Create custom Twitter feeds to show on your website using Twitter API.
+Setup Twitter feeds to pull a user's public timeline, public list, favorite tweets, or a custom search term, phrase, or hashtag.
 
 == Description ==
 

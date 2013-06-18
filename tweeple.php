@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Tweeple
-Description: Create custom Twitter feeds using Twitter's latest API.
+Description: Setup Twitter feeds to pull a user's public timeline, public list, favorite tweets, or a custom search term, phrase, or hashtag.
 Version: 0.2.0
 Author: Theme Blvd
 Author URI: http://themeblvd.com
