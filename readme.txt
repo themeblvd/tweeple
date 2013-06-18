@@ -60,11 +60,13 @@ Think of your WordPress website as the "application" -- Once you have these cred
 
 = How do I setup the "Authentication" settings? =
 
+[vimeo https://vimeo.com/68603403]
+
 After installing Tweeple, in your WordPress admin, go to *Tools > Tweeple > Authentication* and you'll find your Twitter API application settings.
 
 To create your "application," login to Twitter, and go to: [https://dev.twitter.com/apps](https://dev.twitter.com/apps)
 
-Create an application, and then create a user token for that application ([See Video](https://vimeo.com/68603403)).
+Create an application, and then create a user token for that application.
 
 After you're done, you'll need to put in the following information to Tweeple at *WP Admin > Tools > Tweeple > Authentication*:
 
