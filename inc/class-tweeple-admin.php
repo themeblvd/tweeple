@@ -1099,7 +1099,7 @@ class Tweeple_Admin {
 		// Clear options
 		if( isset( $input['clear'] ) ) {
 
-			if( ! $this->validated ) // Avoid duplicates
+			if( ! $this->sanitized ) // Avoid duplicates
 				add_settings_error( $this->access_id, 'save_options', __( 'Options cleared.', 'tweeple' ), 'error fade' );
 
 			return null;
