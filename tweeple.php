@@ -2,7 +2,7 @@
 /*
 Plugin Name: Tweeple
 Description: Create custom Twitter feeds using Twitter's latest API.
-Version: 0.1.0
+Version: 0.2.0
 Author: Theme Blvd
 Author URI: http://themeblvd.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
 
 */
 
-define( 'TWEEPLE_PLUGIN_VERSION', '0.1.0' );
+define( 'TWEEPLE_PLUGIN_VERSION', '0.2.0' );
 define( 'TWEEPLE_PLUGIN_DIR', dirname( __FILE__ ) );
 define( 'TWEEPLE_PLUGIN_URI', plugins_url( '' , __FILE__ ) );
 define( 'TWEEPLE_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
