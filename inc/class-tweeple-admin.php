@@ -313,7 +313,8 @@ class Tweeple_Admin {
 				$output .= '</tr>';
 			}
 		} else {
-			$output .= '<tr><td colspan="'.$num.'">'.__('No items have been created yet. Click the Add tab above to get started.', 'themeblvd').'</td></tr>';
+			$num = count($columns) + 1;
+			$output .= sprintf('<tr><td colspan="%s">%s</td></tr>', $num, __('No items have been created yet. Click the Add tab above to get started.', 'tweeple') );
 		}
 		$output .= '</tbody>';
 		$output .= '</table>';
@@ -952,6 +953,11 @@ class Tweeple_Admin {
 			<?php settings_fields( $this->access_id ); ?>
 
 			<div class="metabox-holder">
+
+				<div class="authentication-help">
+					<p><?php printf(__('In order to access Twitter API, you\'ll need to login to Twitter and create an application at %s. After you\'ve done this, enter your OAuth settings and access token below.', 'tweeple'), '<a href="https://dev.twitter.com/apps" target="_blank">dev.twitter.com/apps</a>'); ?></p>
+					<p><a href="http://wordpress.org/plugins/tweeple/faq/" target="_blank"><?php _e('See FAQ', 'tweeple'); ?></a> | <a href="https://vimeo.com/68603403" target="_blank"><?php _e('Watch Video', 'tweeple'); ?></a></p>
+				</div>
 
 				<div class="postbox inner-section">
 					<h3><?php _e('OAuth Settings', 'tweeple'); ?></h3>

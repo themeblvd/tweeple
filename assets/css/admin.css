@@ -104,7 +104,14 @@
 	border-top: none;
 }
 
-/* Authorization */
+/* Authentication */
+#tweeple .authentication-help {
+	color: #888;
+	padding: 0 10px 10px 10px;
+}
+#tweeple .authentication-help p {
+	margin: 0 0 5px 0;
+}
 #tweeple .postbox {
 	position: relative;
 }

@@ -64,7 +64,7 @@ After installing Tweeple, in your WordPress admin, go to *Tools > Tweeple > Auth
 
 To create your "application," login to Twitter, and go to: [https://dev.twitter.com/apps](https://dev.twitter.com/apps)
 
-Create an application, and then create a user token for that application ([See Video](https://vimeo.com/59573397)).
+Create an application, and then create a user token for that application ([See Video](https://vimeo.com/68603403)).
 
 After you're done, you'll need to put in the following information to Tweeple at *WP Admin > Tools > Tweeple > Authentication*:
 
