@@ -9,6 +9,7 @@ class Tweeple_Admin {
 	private $parent;
 	private $base;
 	private $access_id;
+	private $sanitized = false;
 
 	/**
 	 * Constructor
@@ -1097,7 +1098,10 @@ class Tweeple_Admin {
 
 		// Clear options
 		if( isset( $input['clear'] ) ) {
-			add_settings_error( $this->access_id, 'save_options', __( 'Options cleared.', 'tweeple' ), 'error fade' );
+
+			if( ! $this->validated ) // Avoid duplicates
+				add_settings_error( $this->access_id, 'save_options', __( 'Options cleared.', 'tweeple' ), 'error fade' );
+
 			return null;
 		}
 
@@ -1106,7 +1110,11 @@ class Tweeple_Admin {
 			$clean[$key] = wp_kses( $value, array() );
 
 		// Add success message
-		add_settings_error( $this->access_id, 'save_options', __( 'Options saved.', 'tweeple' ), 'updated fade' );
+		if( ! $this->sanitized ) // Avoid duplicates
+			add_settings_error( $this->access_id, 'save_options', __( 'Options saved.', 'tweeple' ), 'updated fade' );
+
+		// Check for future duplicate passes.
+		$this->sanitized = true;
 
 		return $clean;
 	}
