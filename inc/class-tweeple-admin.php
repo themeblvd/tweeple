@@ -44,6 +44,8 @@ class Tweeple_Admin {
 
 	/**
 	 * Get basename used by WP for page hook.
+	 *
+	 * @since 0.1.0
 	 */
 	public function get_base() {
 		return $this->base;
@@ -55,6 +57,8 @@ class Tweeple_Admin {
 
 	/**
 	 * Include admin page's CSS/JS
+	 *
+	 * @since 0.1.0
 	 */
 	public function assets( $hook ) {
 		if( $hook == $this->base ) {
@@ -76,6 +80,8 @@ class Tweeple_Admin {
 
 	/**
 	 * Register admin page with WP
+	 *
+	 * @since 0.1.0
 	 */
 	public function add_page() {
 
@@ -94,6 +100,8 @@ class Tweeple_Admin {
 
 	/**
 	 * Display admin page wrapper.
+	 *
+	 * @since 0.1.0
 	 */
 	public function display_page() {
 
@@ -150,6 +158,8 @@ class Tweeple_Admin {
 
 	/**
 	 * Get table of a custom post type.
+	 *
+	 * @since 0.1.0
 	 */
 	private function posts_table( $post_type, $columns, $manual_delete = null ) {
 
@@ -324,6 +334,8 @@ class Tweeple_Admin {
 
 	/**
 	 * Get form for adding and editing a feed.
+	 *
+	 * @since 0.1.0
 	 */
 	function feed_config( $id = 0, $value = array() ) {
 
@@ -699,6 +711,8 @@ class Tweeple_Admin {
 
 	/**
 	 * Save and sanitize meta data for tweeple_feed post.
+	 *
+	 * @since 0.1.0
 	 */
 	public function save_feed_meta( $post_id, $settings ) {
 
