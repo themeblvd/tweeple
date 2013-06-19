@@ -118,6 +118,8 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.3.0 =
 
+* Fixed CSS quirk with "Twitter Feeds" admin interface in Firefox.
+
 = 0.2.0 =
 
 * Improved saving and handling notices for Authentication settings page.
