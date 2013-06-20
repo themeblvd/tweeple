@@ -116,6 +116,8 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 == Changelog ==
 
+= 0.4.0 =
+
 = 0.3.0 =
 
 * Fixed CSS quirk with "Twitter Feeds" admin interface in Firefox.
