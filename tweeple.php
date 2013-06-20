@@ -63,5 +63,8 @@ function tweeple_hooks(){
     add_action( 'tweeple_tweet_timestamp', 'tweeple_tweet_timestamp_default' );
     // add_action( 'tweeple_tweet_timestamp', 'tweeple_tweet_timestamp_fancy' );
 
+    // "Tweet" element for Theme Blvd Layout Builder
+    add_action( 'tweeple_display_tweet_element', 'tweeple_tweet_element_default', 10, 2 );
+
 }
 add_action( 'plugins_loaded', 'tweeple_hooks' );
