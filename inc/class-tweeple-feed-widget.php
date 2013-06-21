@@ -51,7 +51,7 @@ class Tweeple_Feed_Widget extends WP_Widget {
 		echo '<div class="tweeple tweeple-feed tweeple-feed-widget">';
         echo '<div class="tweeple-inner">';
 
-        if( $error  ) {
+        if( $error ) {
 
             // Display error
             printf( '<p>%s</p>', $error );
