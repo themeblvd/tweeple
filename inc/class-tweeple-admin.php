@@ -563,7 +563,7 @@ class Tweeple_Admin {
 					<div class="section col-wrap">
 						<div class="col-left">
 							<div class="col-inner control">
-								<h4><?php _e('Display time of each tweet?', 'tweeple'); ?></h4>
+								<h4><?php _e('Display Tweet details?', 'tweeple'); ?></h4>
 								<select name="time">
 									<option value="yes" <?php selected( 'yes', $value['time'] ); ?>>
 										<?php _e( 'Yes', 'tweeple' ); ?>
@@ -577,7 +577,10 @@ class Tweeple_Admin {
 						<div class="col-right">
 							<div class="col-inner">
 								<div class="desc">
-									<p><?php _e('Select whether or not you\'d like the timestamp displayed below each tweet or not.', 'tweeple'); ?></p>
+									<p>
+										<?php _e('This will display a timestamp for the Tweet, or whatever your current theme has setup to be displayed for each Tweet\'s meta.', 'tweeple'); ?>
+										<?php printf( '<a href="https://github.com/themeblvd/Tweeple/wiki/How-to-create-your-own-meta-display-for-tweets">%s</a>', __('Learn More', 'tweeple' ) ); ?>
+									</p>
 								</div>
 							</div>
 						</div>
