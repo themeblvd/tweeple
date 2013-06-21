@@ -183,6 +183,8 @@ class Tweeple_Theme_Blvd {
  * @since 0.4.0
  */
 function themeblvd_tweet( $id, $options ) {
-	$tweeple = Tweeple_Theme_Blvd::get_instance();
-	$tweeple->tweet_element( $id, $options );
+    $tweeple = Tweeple_Theme_Blvd::get_instance();
+    ob_start();
+    $tweeple->tweet_element( $id, $options );
+    return ob_get_clean();
 }

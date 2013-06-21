@@ -130,7 +130,7 @@ function tweeple_tweet_element_default( $feed, $options ) {
  */
 function tweeple_get_tweet_element_default( $feed, $options ) {
 
-	if( ! defined( 'TB_FRAMEWORK_VERSION' ) || ! defined( 'TB_BUILDER_PLUGIN_VERSION' ) )
+	if( ! defined( 'TB_FRAMEWORK_VERSION' ) )
 		return;
 
 	if( ! $feed['tweets'] )
