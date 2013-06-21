@@ -118,6 +118,8 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.5.0 =
 
+* Fixed "Tweet" element from last update in Theme Blvd framework v2-2.2.
+
 = 0.4.0 =
 
 * Added support for "Tweet" Builder element in Theme Blvd themes.
