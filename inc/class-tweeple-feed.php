@@ -340,8 +340,14 @@ class Tweeple_Feed {
 
         // If code was not 200, it means we'll have some sort of error.
         if( $code != 200 ) {
-            if( $code == 401 ) {
-                $this->error = __( 'Twitter error: Authentication credentials were missing or incorrect.', 'tweeple' );
+            if( $code == 0 ) {
+                 $this->error = __( 'Security Error from tmhOAuth.', 'tweeple' );
+            } else if( $code == 401 ) {
+                $this->error = __( '401 Unauthorized: Authentication credentials were missing or incorrect.', 'tweeple' );
+            } else if( $code == 404 ) {
+                $this->error = __( '404 Not Found: The URI requested is invalid or the resource requested, such as a user, does not exists.', 'tweeple' );
+            } else if( $code == 429 ) {
+                $this->error = __( '429 Too Many Requests: Your application\'s rate limit has been exhausted for the resource.', 'tweeple' );
             } else {
                 $link = sprintf( '<a href="https://dev.twitter.com/docs/error-codes-responses" target="_blank">%s</a>', $code );
                 $this->error = sprintf( __('Twitter sent back an error. Error code: %s', 'tweeple'), $link );
