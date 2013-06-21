@@ -520,7 +520,7 @@ class Tweeple_Admin {
 					<div class="section col-wrap toggle toggle-user_timeline toggle-list">
 						<div class="col-left">
 							<div class="col-inner control">
-								<h4><?php _e('Exclude Retweets?', 'tweeple'); ?></h4>
+								<h4><?php _e('Exclude retweets?', 'tweeple'); ?></h4>
 								<select name="exclude_retweets">
 									<option value="yes" <?php selected( 'yes', $value['exclude_retweets'] ); ?>>
 										<?php _e( 'Yes', 'tweeple' ); ?>
@@ -534,7 +534,7 @@ class Tweeple_Admin {
 						<div class="col-right">
 							<div class="col-inner">
 								<div class="desc">
-									<p><?php _e('Select if you\'d like re-tweets excluded from the list of tweets or not.', 'tweeple'); ?></p>
+									<p><?php _e('Select if you\'d like retweets excluded from the list of tweets or not.', 'tweeple'); ?></p>
 								</div>
 							</div>
 						</div>
@@ -661,7 +661,7 @@ class Tweeple_Admin {
 							<div class="col-inner">
 								<div class="desc">
 									<p>
-										<?php _e( 'Select the raw number of Tweets to pull from Twitter before Tweeple does any parsing, like excluding @replies and retweets.', 'tweeple' ); ?><br />
+										<?php _e( 'Select the raw number of Tweets to pull from Twitter before doing any parsing, like excluding @replies and retweets.', 'tweeple' ); ?><br />
 										<?php printf( '<a href="https://github.com/themeblvd/Tweeple/wiki/Tweet-Limit">%s</a>', $learn_more ); ?>
 									</p>
 								</div>
