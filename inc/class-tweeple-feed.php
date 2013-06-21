@@ -203,7 +203,7 @@ class Tweeple_Feed {
                 'exclude_retweets'  => get_post_meta( $this->feed_id, 'exclude_retweets', true ),
                 'exclude_replies'   => get_post_meta( $this->feed_id, 'exclude_replies', true ),
                 'time'              => get_post_meta( $this->feed_id, 'time', true ),
-                'count'             => get_post_meta( $this->feed_id, 'count', true ),
+                'count'             => get_post_meta( $this->feed_id, 'count', true ), // Display count, NOT raw count.
                 'tweets'            => null
             );
 
@@ -322,11 +322,12 @@ class Tweeple_Feed {
                 break;
         }
 
-        // Set number of tweets to pull
-        $count = intval( get_post_meta( $this->feed_id, 'count', true ) );
-        $limit = apply_filters( 'tweeple_count_limit', 30 );
-        if( $count < 1 || $count > $limit )
-            $count = 3; // Default fallback count
+        // Set number of tweets to pull before any of Tweeple's
+        // parsing, like excluding @replies and retweets.
+        $count = intval( get_post_meta( $this->feed_id, 'raw_count', true ) );
+        $raw_limit = apply_filters( 'tweeple_raw_count_limit', 30 );
+        if( $count < 1 || $count > $raw_limit )
+            $count = 10; // Default fallback raw count
 
         $params['count'] = $count;
 
