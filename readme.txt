@@ -35,6 +35,10 @@ If you'd like to keep our Twitter functionality, you'll want to use this plugin 
 
 *Note: As future theme updates come out, you will see that we've moved much of the theme's functionality like [custom layouts](http://wordpress.org/plugins/theme-blvd-layout-builder/), [sliders](http://wordpress.org/plugins/theme-blvd-sliders/), [shortcodes](http://wordpress.org/plugins/theme-blvd-shortcodes/), [widgets](http://wordpress.org/plugins/theme-blvd-widget-pack/), etc, to plugins, and the Twitter functionality is no different. So Tweeple will hopefully be your answer, moving forward, as we roll things along.*
 
+= Credits =
+
+* [tmhOAuth](https://github.com/themattharris/tmhOAuth), An OAuth 1.0A library written in PHP. By [Matt Harris](https://twitter.com/themattharris).
+
 == Installation ==
 
 1. Upload `tweeple` folder to the `/wp-content/plugins/` directory
