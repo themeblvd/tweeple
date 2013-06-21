@@ -84,9 +84,18 @@ function tweeple_tweet_text_default( $text ) {
  * @since 0.1.0
  */
 function tweeple_tweet_meta_default( $tweet ) {
+	echo tweeple_get_tweet_meta_default( $tweet );
+}
+
+/**
+ * Get default meta for tweets.
+ *
+ * @since 0.5.0
+ */
+function tweeple_get_tweet_meta_default( $tweet ) {
 	$status_url = sprintf( 'https://twitter.com/%s/status/%s', $tweet['author'], $tweet['id_str'] );
 	$time = date_i18n( get_option('date_format'), strtotime( $tweet['time'] ) );
-	printf( '<a href="%s" title="%s" target="_blank">%s</a>', $status_url, $time, $time );
+	return sprintf( '<a href="%s" title="%s" target="_blank">%s</a>', $status_url, $time, $time );
 }
 
 /**
@@ -96,6 +105,16 @@ function tweeple_tweet_meta_default( $tweet ) {
  * @since 0.1.0
  */
 function tweeple_tweet_meta_fancy( $tweet ) {
+	echo tweeple_get_tweet_meta_fancy( $tweet );
+}
+
+/**
+ * Get the fancier meta that could be used for tweets.
+ * Currently not hooked to anything.
+ *
+ * @since 0.5.0
+ */
+function tweeple_get_tweet_meta_fancy( $tweet ) {
 
 	// Status link
 	$status_url = sprintf( 'https://twitter.com/%s/status/%s', $tweet['author'], $tweet['id_str'] );
@@ -109,7 +128,7 @@ function tweeple_tweet_meta_fancy( $tweet ) {
 	// Final time stamp
 	$timestamp = sprintf( '<span class="tweet-stamp">%s</span> <span class="tweet-author">%s %s</span>', $time_link, __( 'via', 'tweeple' ), $author_link );
 
-	echo '<div class="tweet-time tweet-meta">'.$timestamp.'</div>';
+	return '<div class="tweet-time tweet-meta">'.$timestamp.'</div>';
 
 }
 
@@ -174,14 +193,12 @@ function tweeple_get_tweet_element_default( $feed, $options ) {
 
 		if( $feed['time'] == 'yes' ) {
 
-			ob_start();
-			tweeple_tweet_meta_fancy( $tweet );
-			$mets = ob_get_clean();
+			$meta = tweeple_get_tweet_meta_fancy( $tweet );
 
 			if( version_compare( TB_FRAMEWORK_VERSION, '2.2.0', '<' ) )
-				$output .= sprintf( '<span style="font-size:1rem;">%s</span>', $mets ); // Inline styles, barf. Oh, what I do for you, backwards compat.
+				$output .= sprintf( '<span style="font-size:1rem;">%s</span>', $meta ); // Inline styles, barf. Oh, what I do for you, backwards compat.
 			else
-				$output .= $mets;
+				$output .= $meta;
 
 		}
 
