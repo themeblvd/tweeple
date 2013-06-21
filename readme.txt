@@ -120,6 +120,7 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 * Fixed hashtag links in Tweets not linking correctly to Twitter.
 * Fixed "Tweet" element from last update in Theme Blvd framework v2-2.2.
+* Action hook `tweeple_tweet_time` changed to `tweeple_tweet_meta` and hooked functions also use term "meta" instead of "time".
 
 = 0.4.0 =
 

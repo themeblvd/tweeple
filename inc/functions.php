@@ -35,7 +35,7 @@ function tweeple_get_display_default( $feed ) {
 		if( $feed['time'] == 'yes' ) {
 			$output .= '<div class="tweet-time">';
 			ob_start();
-			do_action( 'tweeple_tweet_timestamp', $tweet );
+			do_action( 'tweeple_tweet_meta', $tweet );
 			$output .= ob_get_clean();
 			$output .= '</div>';
 		}
@@ -79,22 +79,23 @@ function tweeple_tweet_text_default( $text ) {
 }
 
 /**
- * Default timestamp for tweets.
+ * Default meta for tweets.
  *
  * @since 0.1.0
  */
-function tweeple_tweet_timestamp_default( $tweet ) {
+function tweeple_tweet_meta_default( $tweet ) {
 	$status_url = sprintf( 'https://twitter.com/%s/status/%s', $tweet['author'], $tweet['id_str'] );
 	$time = date_i18n( get_option('date_format'), strtotime( $tweet['time'] ) );
 	printf( '<a href="%s" title="%s" target="_blank">%s</a>', $status_url, $time, $time );
 }
 
 /**
- * A fancier timestamp that could be used for tweets. Currently not hooked to anything.
+ * A fancier meta that could be used for tweets.
+ * Currently not hooked to anything.
  *
  * @since 0.1.0
  */
-function tweeple_tweet_timestamp_fancy( $tweet ) {
+function tweeple_tweet_meta_fancy( $tweet ) {
 
 	// Status link
 	$status_url = sprintf( 'https://twitter.com/%s/status/%s', $tweet['author'], $tweet['id_str'] );
@@ -174,13 +175,13 @@ function tweeple_get_tweet_element_default( $feed, $options ) {
 		if( $feed['time'] == 'yes' ) {
 
 			ob_start();
-			tweeple_tweet_timestamp_fancy( $tweet );
-			$timestamp = ob_get_clean();
+			tweeple_tweet_meta_fancy( $tweet );
+			$mets = ob_get_clean();
 
 			if( version_compare( TB_FRAMEWORK_VERSION, '2.2.0', '<' ) )
-				$output .= sprintf( '<span style="font-size:1rem;">%s</span>', $timestamp ); // Inline styles, barf. Oh, what I do for you, backwards compat.
+				$output .= sprintf( '<span style="font-size:1rem;">%s</span>', $mets ); // Inline styles, barf. Oh, what I do for you, backwards compat.
 			else
-				$output .= $timestamp;
+				$output .= $mets;
 
 		}
 
