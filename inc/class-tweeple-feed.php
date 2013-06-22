@@ -9,6 +9,7 @@ class Tweeple_Feed {
     private $feed_id = 0;
     private $feed_type = '';
     private $do_cache = true;
+    private $do_entities = false;
     private $access = array();
     private $feed_post = null;
     private $feed = null;
@@ -22,8 +23,9 @@ class Tweeple_Feed {
      */
     public function __construct( $feed_id = 0 ) {
 
-    	$this->feed_id = $feed_id;
+        $this->feed_id = $feed_id;
         $this->do_cache = apply_filters( 'tweeple_do_cache', true );
+        $this->do_entities = apply_filters( 'tweeple_do_entities', false );
 
     	// First check for cache.
     	if( $this->do_cache ) {
@@ -278,7 +280,6 @@ class Tweeple_Feed {
 
                 $params['q'] = urlencode( $search );
                 $params['result_type'] = $result_type;
-                $params['include_entities'] = true;
                 $resource = 'search/tweets';
 
                 break;
@@ -314,6 +315,10 @@ class Tweeple_Feed {
 
                 break;
         }
+
+        // Entities
+        if( $this->do_entities )
+            $params['include_entities'] = true;
 
         // Set number of tweets to pull before any of Tweeple's
         // parsing, like excluding @replies and retweets.
@@ -400,15 +405,24 @@ class Tweeple_Feed {
                 if( strpos( $tweet['text'], '@' ) == 0 )
                     continue; // Skip onto the next tweet
 
-            // Add Tweet
-    		$new_tweets[] = array(
+            // Build new Tweet
+            $new_tweet = array(
                 'id_str'                    => $tweet['id_str'],
                 'text'                      => $tweet['text'],
                 'time'                      => $tweet['created_at'],
                 'author'                    => $tweet['user']['screen_name'],
                 'profile_image_url'         => $tweet['user']['profile_image_url'],
-                'profile_image_url_https'   => $tweet['user']['profile_image_url_https']
+                'profile_image_url_https'   => $tweet['user']['profile_image_url_https'],
+                'retweet_count'             => $tweet['retweet_count'],
+                'favorite_count'            => $tweet['favorite_count'],
+                'source'                    => $tweet['source'],
+                'lang'                      => $tweet['lang']
             );
+
+            if( $this->do_entities && isset( $tweet['entities'] ) )
+                $new_tweet['entities'] = $tweet['entities'];
+
+            $new_tweets[] = $new_tweet;
 
     		$counter++;
     	}
