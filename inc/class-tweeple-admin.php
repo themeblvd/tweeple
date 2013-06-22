@@ -369,6 +369,7 @@ class Tweeple_Admin {
 		settings_errors( 'tweeple_feed_config' );
 
 		$learn_more = __('Learn More', 'tweeple' );
+		$feed_type = $value['feed_type'];
 		?>
 		<form id="feed-config" action="" method="post">
 
@@ -382,16 +383,16 @@ class Tweeple_Admin {
 
 				<div class="feed-type-wrap">
 					<select name="feed_type">
-						<option value="user_timeline" <?php selected( 'user_timeline', $value['feed_type'] ); ?>>
+						<option value="user_timeline" <?php selected( 'user_timeline', $feed_type ); ?>>
 							<?php _e( 'Twitter user\'s timeline', 'tweeple' ); ?>
 						</option>
-						<option value="list" <?php selected( 'list', $value['feed_type'] ); ?>>
+						<option value="list" <?php selected( 'list', $feed_type ); ?>>
 							<?php _e( 'Twitter user\'s public list', 'tweeple' ); ?>
 						</option>
-						<option value="favorites" <?php selected( 'favorites', $value['feed_type'] ); ?>>
+						<option value="favorites" <?php selected( 'favorites', $feed_type ); ?>>
 							<?php _e( 'Twitter user\'s favorite tweets', 'tweeple' ); ?>
 						</option>
-						<option value="search" <?php selected( 'search', $value['feed_type'] ); ?>>
+						<option value="search" <?php selected( 'search', $feed_type ); ?>>
 							<?php _e( 'Search term or hashtag', 'tweeple' ); ?>
 						</option>
 					</select>
@@ -406,10 +407,10 @@ class Tweeple_Admin {
 
 				<div class="postbox inner-section">
 
-					<h3 class="toggle toggle-user_timeline"><?php _e('Twitter User\'s Timeline', 'tweeple'); ?></h3>
-					<h3 class="toggle toggle-list"><?php _e('Twitter User\'s Public List', 'tweeple'); ?></h3>
-					<h3 class="toggle toggle-favorites"><?php _e('Twitter User\'s Favorites', 'tweeple'); ?></h3>
-					<h3 class="toggle toggle-search"><?php _e('Search Term or Hashtag', 'tweeple'); ?></h3>
+					<h3 class="toggle toggle-user_timeline <?php $this->hide_section( 'user_timeline', $feed_type ); ?>"><?php _e('Twitter User\'s Timeline', 'tweeple'); ?></h3>
+					<h3 class="toggle toggle-list <?php $this->hide_section( 'list', $feed_type ); ?>"><?php _e('Twitter User\'s Public List', 'tweeple'); ?></h3>
+					<h3 class="toggle toggle-favorites <?php $this->hide_section( 'favorites', $feed_type ); ?>"><?php _e('Twitter User\'s Favorites', 'tweeple'); ?></h3>
+					<h3 class="toggle toggle-search <?php $this->hide_section( 'search', $feed_type ); ?>"><?php _e('Search Term or Hashtag', 'tweeple'); ?></h3>
 
 					<div class="section col-wrap">
 						<div class="col-left">
@@ -427,7 +428,7 @@ class Tweeple_Admin {
 						</div>
 					</div><!-- .section (end) -->
 
-					<div class="section col-wrap toggle toggle-user_timeline toggle-favorites">
+					<div class="section col-wrap toggle toggle-user_timeline toggle-favorites <?php $this->hide_section( array('user_timeline', 'favorites'), $feed_type ); ?>">
 						<div class="col-left">
 							<div class="col-inner control">
 								<h4><?php _e('Twitter Username', 'tweeple'); ?></h4>
@@ -443,7 +444,7 @@ class Tweeple_Admin {
 						</div>
 					</div><!-- .section (end) -->
 
-					<div class="section col-wrap toggle toggle-list">
+					<div class="section col-wrap toggle toggle-list <?php $this->hide_section( array('list'), $feed_type ); ?>">
 						<div class="col-left">
 							<div class="col-inner control">
 								<h4><?php _e('List Slug', 'tweeple'); ?></h4>
@@ -459,7 +460,7 @@ class Tweeple_Admin {
 						</div>
 					</div><!-- .section (end) -->
 
-					<div class="section col-wrap toggle toggle-list">
+					<div class="section col-wrap toggle toggle-list <?php $this->hide_section( array('list'), $feed_type ); ?>">
 						<div class="col-left">
 							<div class="col-inner control">
 								<h4><?php _e('List Owner\'s Username', 'tweeple'); ?></h4>
@@ -475,7 +476,7 @@ class Tweeple_Admin {
 						</div>
 					</div><!-- .section (end) -->
 
-					<div class="section col-wrap toggle toggle-search">
+					<div class="section col-wrap toggle toggle-search <?php $this->hide_section( array('search'), $feed_type ); ?>">
 						<div class="col-left">
 							<div class="col-inner control">
 								<h4><?php _e('Search Term', 'tweeple'); ?></h4>
@@ -491,7 +492,7 @@ class Tweeple_Admin {
 						</div>
 					</div><!-- .section (end) -->
 
-					<div class="section col-wrap toggle toggle-search">
+					<div class="section col-wrap toggle toggle-search <?php $this->hide_section( array('search'), $feed_type ); ?>">
 						<div class="col-left">
 							<div class="col-inner control">
 								<h4><?php _e('Search Results Type', 'tweeple'); ?></h4>
@@ -517,7 +518,7 @@ class Tweeple_Admin {
 						</div>
 					</div><!-- .section (end) -->
 
-					<div class="section col-wrap toggle toggle-user_timeline toggle-list">
+					<div class="section col-wrap toggle toggle-user_timeline toggle-list <?php $this->hide_section( array('user_timeline', 'list'), $feed_type ); ?>">
 						<div class="col-left">
 							<div class="col-inner control">
 								<h4><?php _e('Exclude retweets?', 'tweeple'); ?></h4>
@@ -540,7 +541,7 @@ class Tweeple_Admin {
 						</div>
 					</div><!-- .section (end) -->
 
-					<div class="section col-wrap toggle toggle-user_timeline">
+					<div class="section col-wrap toggle toggle-user_timeline <?php $this->hide_section( array('user_timeline'), $feed_type ); ?>">
 						<div class="col-left">
 							<div class="col-inner control">
 								<h4><?php _e('Exclude @replies?', 'tweeple'); ?></h4>
@@ -685,7 +686,30 @@ class Tweeple_Admin {
 	}
 
 	/**
+	 * Get form for adding and editing a feed.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param mixed $section_types Current section's types, could be single string or array
+	 * @param string $feed_type Current type of feed
+	 */
+	function hide_section( $section_type, $feed_type ) {
+
+		if( is_array( $section_type ) ) {
+			if( ! in_array( $feed_type, $section_type ) )
+				echo 'hide';
+			return;
+		}
+
+		if( $section_type != $feed_type )
+			echo 'hide';
+
+	}
+
+	/**
 	 * Save feed on form submissions.
+	 *
+	 * @since 0.1.0
 	 */
 	public function save_feed() {
 
