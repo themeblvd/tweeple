@@ -773,8 +773,18 @@ class Tweeple_Admin {
 		$yes_no = apply_filters( 'tweeple_yes_no_options', array( 'exclude_replies', 'exclude_retweets', 'time' ) );
 
 		// Maximum count limit for number of tweets pulled
-		$limit = apply_filters( 'tweeple_count_limit', 30 );
 		$raw_limit = apply_filters( 'tweeple_raw_count_limit', 30 );
+		$display_limit = apply_filters( 'tweeple_count_limit', 20 );
+
+		// Raw Count
+		$raw_count = intval( $settings['raw_count'] );
+		if( $raw_count < 1 || $raw_count > $raw_limit )
+			$settings['raw_count'] = 10; // Default fallback count
+
+		// Display Count
+		$display_count = intval( $settings['count'] );
+		if( $display_count < 1 || $display_count > $display_limit || $display_count > $settings['raw_count'] )
+			$settings['count'] = $settings['raw_count'];
 
 		foreach( $settings as $key => $value ){
 
@@ -797,20 +807,6 @@ class Tweeple_Admin {
 			// Verify Yes/No type select options
 			if( in_array( $key, $yes_no ) && ( $value != 'yes' && $value != 'no' ) )
 				$value = 'no';
-
-			// Verify display number of tweets
-			if( $key == 'count' ) {
-				$value = intval( $value );
-				if( $value < 1 || $value > $limit )
-					$value = 3; // Default fallback count
-			}
-
-			// Verify raw number of tweets
-			if( $key == 'raw_count' ) {
-				$value = intval( $value );
-				if( $value < 1 || $value > $raw_limit )
-					$value = 10; // Default fallback count
-			}
 
 			// Verify cache time. Don't allow user to set
 			// cache time less than once a minute.
