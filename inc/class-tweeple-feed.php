@@ -239,10 +239,6 @@ class Tweeple_Feed {
         // Establish tmhOAuth wrap with access credientials
         $twitter = new tmhOAuth( $this->access );
 
-        // General options
-        $exclude_retweets = get_post_meta( $this->feed_id, 'exclude_retweets', true );
-        $exclude_replies = get_post_meta( $this->feed_id, 'exclude_replies', true );
-
         // Start request params
         $params = array();
         $resource = '';
@@ -253,17 +249,15 @@ class Tweeple_Feed {
             case 'user_timeline' :
 
                 $screen_name = get_post_meta( $this->feed_id, 'screen_name', true );
-                $include_rts = $exclude_retweets == 'yes' ? false : true;
-                $exclude_replies = $exclude_replies == 'yes' ? true : false;
 
                 if( ! $screen_name ) {
                     $this->error = __('No Twitter username given.', 'tweeple');
                     return;
                 }
 
+                $params['include_rts'] = true;
+                $params['exclude_replies'] = false;
                 $params['screen_name'] = $screen_name;
-                $params['include_rts'] = $include_rts;
-                $params['exclude_replies'] = $exclude_replies;
                 $resource = 'statuses/user_timeline';
 
                 break;
@@ -293,16 +287,15 @@ class Tweeple_Feed {
 
                 $slug = get_post_meta( $this->feed_id, 'slug', true );
                 $screen_name = get_post_meta( $this->feed_id, 'owner_screen_name', true );
-                $include_rts = $exclude_retweets == 'yes' ? false : true;
 
                 if( ! $slug || ! $screen_name ) {
                     $this->error = __('No list slug and/or owner username given.', 'tweeple');
                     return;
                 }
 
+                $params['include_rts'] = true;
                 $params['slug'] = $slug;
                 $params['owner_screen_name'] = $screen_name;
-                $params['include_rts'] = $include_rts;
                 $resource = 'lists/statuses';
 
                 break;
@@ -340,18 +333,20 @@ class Tweeple_Feed {
 
         // If code was not 200, it means we'll have some sort of error.
         if( $code != 200 ) {
-            if( $code == 0 ) {
-                 $this->error = __( 'Security Error from tmhOAuth.', 'tweeple' );
-            } else if( $code == 401 ) {
-                $this->error = __( '401 Unauthorized: Authentication credentials were missing or incorrect.', 'tweeple' );
-            } else if( $code == 404 ) {
-                $this->error = __( '404 Not Found: The URI requested is invalid or the resource requested, such as a user, does not exists.', 'tweeple' );
-            } else if( $code == 429 ) {
-                $this->error = __( '429 Too Many Requests: Your application\'s rate limit has been exhausted for the resource.', 'tweeple' );
-            } else {
-                $link = sprintf( '<a href="https://dev.twitter.com/docs/error-codes-responses" target="_blank">%s</a>', $code );
-                $this->error = sprintf( __('Twitter sent back an error. Error code: %s', 'tweeple'), $link );
-            }
+
+            $link = sprintf( '<a href="https://dev.twitter.com/docs/error-codes-responses" target="_blank">%s</a>', $code );
+
+            if( $code == 0 )
+                $this->error = sprintf( __( 'Security Error from tmhOAuth.', 'tweeple' ), $link );
+            else if( $code == 401 )
+                $this->error = sprintf( __( '%s Unauthorized: Authentication credentials were missing or incorrect.', 'tweeple' ), $link );
+            else if( $code == 404 )
+                $this->error = sprintf( __( '%s Not Found: The URI requested is invalid or the resource requested, such as a user, does not exists.', 'tweeple' ), $link );
+            else if( $code == 429 )
+                $this->error = sprintf( __( '%s Too Many Requests: Your application\'s rate limit has been exhausted for the resource.', 'tweeple' ), $link );
+            else
+                $this->error = sprintf( __( 'Twitter sent back an error. Error code: %s', 'tweeple'), $link );
+
             return null;
         }
 
@@ -372,6 +367,13 @@ class Tweeple_Feed {
     	$tweets = json_decode( $tweets, true );
         $this->raw_feed = $tweets; // Store raw feed
 
+        $limit = get_post_meta( $this->feed_id, 'count', true );
+        if( ! $limit )
+            $limit = 3;
+
+        $exclude_retweets = get_post_meta( $this->feed_id, 'exclude_retweets', true );
+        $exclude_replies = get_post_meta( $this->feed_id, 'exclude_replies', true );
+
         if( $this->feed_type == 'search' )
             $tweets = $tweets['statuses'];
 
@@ -381,9 +383,22 @@ class Tweeple_Feed {
         // Run through raw tweets
     	foreach( $tweets as $tweet ) {
 
-            // Process retweet
-            if( $this->feed_type == 'user_timeline' && isset( $tweet['retweeted_status'] ) )
-                $tweet = $tweet['retweeted_status'];
+            // Check for display limit
+            if( $counter > $limit )
+                break;
+
+            // Retweet (user timeline and lists)
+            if( ( $this->feed_type == 'user_timeline' || $this->feed_type == 'list' ) && isset( $tweet['retweeted_status'] ) ) {
+                if( $exclude_retweets == 'yes' )
+                    continue; // Skip onto the next tweet
+                else
+                    $tweet = $tweet['retweeted_status'];
+            }
+
+            // @Replies (user timeline)
+            if( $this->feed_type == 'user_timeline' && $exclude_replies == 'yes' )
+                if( strpos( $tweet['text'], '@' ) == 0 )
+                    continue; // Skip onto the next tweet
 
             // Add Tweet
     		$new_tweets[] = array(
