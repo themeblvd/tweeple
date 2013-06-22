@@ -122,6 +122,7 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.5.0 =
 
+* Separated out "Tweet Display Limit" with new "Raw Tweet Count" performance option for number of Tweets. -- So, if you're excluding retweets or @replies, you'll want your raw Tweet count to be higher than your display limit.
 * Fixed hashtag links in Tweets not linking correctly to Twitter.
 * Tweet "Time" in admin is now "Details" for better referencing.
 * Action hook `tweeple_tweet_time` changed to `tweeple_tweet_meta` and hooked functions also use term "meta" instead of "time".
