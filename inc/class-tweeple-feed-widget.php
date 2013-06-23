@@ -36,6 +36,9 @@ class Tweeple_Feed_Widget extends WP_Widget {
 		// Get new Twitter feed, or cached result
 		$feed = tweeple_get_feed( $instance['feed_id'] );
 
+		// Get Tweets
+        $tweets = tweeple_get_tweets( $feed ); // @todo Could incorporate feed merging in the future here. tweeple_get_tweets( array( $feed1, $feed2, $feed3 ) )
+
 		// Display widget
 		echo $before_widget;
 
@@ -46,15 +49,15 @@ class Tweeple_Feed_Widget extends WP_Widget {
 		echo '<div class="tweeple tweeple-feed tweeple-feed-widget">';
         echo '<div class="tweeple-inner">';
 
-        if( tweeple_error( $feed ) ) {
+        if( ! tweeple_error( $feed ) ) {
 
-            // Display error
-            printf( '<p>%s</p>', tweeple_error( $feed ) );
+        	// We are a go! Display widget.
+            do_action( 'tweeple_display_widget', $tweets, $feed['options'], $feed['info'] );
 
         } else {
 
-            // We are a go! Display widget.
-            do_action( 'tweeple_display_widget', $feed );
+			// Display error
+            printf( '<p>%s</p>', tweeple_error( $feed ) );
 
         }
 

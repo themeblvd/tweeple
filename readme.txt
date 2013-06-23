@@ -122,6 +122,7 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.5.0 =
 
+* **Clear your Twitter feed caches, at Tools > Tweeple > Twitter Feeds, after this update.**
 * Separated out "Tweet Display Limit" with new "Raw Tweet Count" performance option for number of Tweets. -- So, if you're excluding retweets or @replies, you'll want your raw Tweet count to be higher than your display limit.
 * Expanded cached feeds to include `retweet_count`, `favorite_count`, `source`, and `lang` for your custom templating.
 * Added `tweeple_do_entities` boolean filter for advanced users to add entities to feeds for custom templating.

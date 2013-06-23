@@ -54,17 +54,17 @@ function tweeple_hooks(){
     add_filter( 'tweeple_tweet_text', 'tweeple_tweet_text_default' );
 
     // Display Widget
-    add_action( 'tweeple_display_widget', 'tweeple_display_default' );
+    add_action( 'tweeple_display_widget', 'tweeple_display_default', 10, 2 );
 
     // Display Shortcode
-    add_action( 'tweeple_display_shortcode', 'tweeple_display_default' );
+    add_action( 'tweeple_display_shortcode', 'tweeple_display_default', 10, 2 );
 
     // Tweet Meta
     add_action( 'tweeple_tweet_meta', 'tweeple_tweet_meta_default' );
     // add_action( 'tweeple_tweet_meta', 'tweeple_tweet_meta_fancy' );
 
     // "Tweet" element for Theme Blvd Layout Builder
-    add_action( 'tweeple_display_tweet_element', 'tweeple_tweet_element_default', 10, 2 );
+    add_action( 'tweeple_display_tweet_element', 'tweeple_tweet_element_default', 10, 3 );
 
 }
 add_action( 'plugins_loaded', 'tweeple_hooks' );

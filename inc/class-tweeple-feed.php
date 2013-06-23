@@ -194,19 +194,23 @@ class Tweeple_Feed {
 
             // Setup feed array
             $this->feed = array(
-                'id'                => $this->feed_id,
-                'type'              => $this->feed_type,
-                'name'              => $this->feed_post->post_title,
-                'screen_name'       => get_post_meta( $this->feed_id, 'screen_name', true ),
-                'slug'              => get_post_meta( $this->feed_id, 'slug', true ),
-                'owner_screen_name' => get_post_meta( $this->feed_id, 'owner_screen_name', true ),
-                'search'            => get_post_meta( $this->feed_id, 'search', true ),
-                'result_type'       => get_post_meta( $this->feed_id, 'result_type', true ),
-                'exclude_retweets'  => get_post_meta( $this->feed_id, 'exclude_retweets', true ),
-                'exclude_replies'   => get_post_meta( $this->feed_id, 'exclude_replies', true ),
-                'time'              => get_post_meta( $this->feed_id, 'time', true ),
-                'count'             => get_post_meta( $this->feed_id, 'count', true ), // Display count, NOT raw count.
-                'tweets'            => null
+                'info' => array(
+                    'id'                => $this->feed_id,
+                    'type'              => $this->feed_type,
+                    'name'              => $this->feed_post->post_title,
+                ),
+                'options' => array(
+                    'screen_name'       => get_post_meta( $this->feed_id, 'screen_name', true ),
+                    'slug'              => get_post_meta( $this->feed_id, 'slug', true ),
+                    'owner_screen_name' => get_post_meta( $this->feed_id, 'owner_screen_name', true ),
+                    'search'            => get_post_meta( $this->feed_id, 'search', true ),
+                    'result_type'       => get_post_meta( $this->feed_id, 'result_type', true ),
+                    'exclude_retweets'  => get_post_meta( $this->feed_id, 'exclude_retweets', true ),
+                    'exclude_replies'   => get_post_meta( $this->feed_id, 'exclude_replies', true ),
+                    'time'              => get_post_meta( $this->feed_id, 'time', true ),
+                    'count'             => get_post_meta( $this->feed_id, 'count', true ), // Display count, NOT raw count.
+                ),
+                'tweets'                => null
             );
 
             // Get response from Twitter

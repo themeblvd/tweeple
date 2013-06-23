@@ -8,8 +8,8 @@
  *
  * @since 0.1.0
  */
-function tweeple_display_default( $feed ) {
-	echo tweeple_get_display_default( $feed );
+function tweeple_display_default( $tweets, $options ) {
+	echo tweeple_get_display_default( $tweets, $options );
 }
 
 /**
@@ -17,26 +17,26 @@ function tweeple_display_default( $feed ) {
  *
  * @since 0.1.0
  */
-function tweeple_get_display_default( $feed ) {
+function tweeple_get_display_default( $tweets, $options ) {
 
 	$output = '';
 
-	// Check for tweets
-	if( ! $feed['tweets'] )
+	// Check for Tweets
+	if( ! $tweets )
 		return __('No tweets to display.', 'tweeple');
 
 	$output .= '<ul class="tweets">';
 
-	// Loop through tweets
-	foreach( $feed['tweets'] as $tweet ) {
+	// Loop through Tweets
+	foreach( $tweets as $tweet ) {
 
 		$output .= '<li class="tweet">';
 		$output .= '<div class="tweet-wrap">';
 
-		$text = apply_filters( 'tweeple_tweet_text', $tweet['text'], $tweet, $feed );
+		$text = apply_filters( 'tweeple_tweet_text', $tweet['text'], $tweet, $tweets, $options );
 		$output .= sprintf( '<div class="tweet-text">%s</div>', $text );
 
-		if( tweeple_show_tweet_meta( $feed ) )
+		if( tweeple_show_tweet_meta( $options ) )
 			$output .= sprintf( '<div class="tweet-meta tweet-time">%s</div>', tweeple_get_tweet_meta( $tweet ) );
 
 		$output .= '</div><!-- .tweet-wrap (end) -->';
@@ -137,8 +137,8 @@ function tweeple_get_tweet_meta_fancy( $tweet ) {
  *
  * @since 0.4.0
  */
-function tweeple_tweet_element_default( $feed, $options ) {
-	echo tweeple_get_tweet_element_default( $feed, $options );
+function tweeple_tweet_element_default( $tweets, $feed_options, $element_options ) {
+	echo tweeple_get_tweet_element_default( $tweets, $feed_options, $element_options );
 }
 
 /**
@@ -147,15 +147,15 @@ function tweeple_tweet_element_default( $feed, $options ) {
  *
  * @since 0.4.0
  */
-function tweeple_get_tweet_element_default( $feed, $options ) {
+function tweeple_get_tweet_element_default( $tweets, $feed_options, $element_options ) {
 
 	if( ! defined( 'TB_FRAMEWORK_VERSION' ) )
 		return;
 
-	if( ! $feed['tweets'] )
+	if( ! $tweets )
 		return __('No tweets to display.', 'tweeple');
 
-	$icon = $options['icon'];
+	$icon = $element_options['icon'];
 
 	// Convert older icon option for those updating.
 	if( version_compare( TB_FRAMEWORK_VERSION, '2.2.0', '>=' ) ) {
@@ -177,7 +177,7 @@ function tweeple_get_tweet_element_default( $feed, $options ) {
 	$count = 1;
 	$max = apply_filters( 'tweeple_tweet_element_max_count', 1 ); // @todo Possibly make option later
 
-	foreach( $feed['tweets'] as $tweet ) {
+	foreach( $tweets as $tweet ) {
 
 		if( $count > $max )
 			break;
@@ -187,10 +187,10 @@ function tweeple_get_tweet_element_default( $feed, $options ) {
 		if( $icon )
 			$output .= sprintf( '<div class="tweet-icon"><i class="icon-%s"></i></div>', $icon );
 
-		$text = apply_filters( 'tweeple_tweet_text', $tweet['text'], $tweet, $feed );
+		$text = apply_filters( 'tweeple_tweet_text', $tweet['text'], $tweet, $feed_options );
 		$output .= sprintf( '<div class="tweet-text tweet-content">%s</div>', $text );
 
-		if( tweeple_show_tweet_meta( $feed ) ) {
+		if( tweeple_show_tweet_meta( $feed_options ) ) {
 
 			$meta = tweeple_get_tweet_meta_fancy( $tweet );
 
@@ -240,6 +240,35 @@ function tweeple_error( $feed ) {
 function tweeple_get_feed( $feed_id ) {
 	$tweeple_feed = new Tweeple_Feed( $feed_id );
 	return $tweeple_feed->get_feed();
+}
+
+/**
+ * Get Tweets from a Twitter feed.
+ *
+ * @since 0.5.0
+ *
+ * @param array $feed A Twitter feed or bigger array of multiple twitter feeds.
+ * @return array Tweets to display in chronological order
+ */
+function tweeple_get_tweets( $feed ) {
+
+	if( ! is_array( $feed ) )
+		return null;
+
+	// If this is a single Twitter feed
+	if( isset( $feed['tweets'] ) )
+		return $feed['tweets'];
+
+	// If this is a single Twitter feed, but for
+	// some reason, passed in a bigger array
+	if( count( $feed ) == 1 ) {
+		if( isset( $feed[0]['tweets'] ) )
+			return $feed[0]['tweets'];
+		else
+			return null;
+	}
+
+	// ... @todo do merging now
 }
 
 /**
