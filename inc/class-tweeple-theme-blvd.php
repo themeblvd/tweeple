@@ -164,12 +164,8 @@ class Tweeple_Theme_Blvd {
 		$tweeple_feed = new Tweeple_Feed( $options['feed_id'] );
 		$feed = $tweeple_feed->get_feed();
 
-		// Check for error
-        $tweeple = Tweeple::get_instance();
-        $error = $tweeple->feed_error( $feed );
-
-        if( $error  )
-            printf( '<p>%s</p>', $error );
+        if( tweeple_error( $feed )  )
+            printf( '<p>%s</p>', tweeple_error( $feed ) );
         else
             do_action( 'tweeple_display_tweet_element', $feed, $options, $id );
 

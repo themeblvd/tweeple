@@ -186,17 +186,14 @@ class Tweeple {
         $tweeple_feed = new Tweeple_Feed( $atts['id'] );
         $feed = $tweeple_feed->get_feed();
 
-        // Check for error
-        $error = $this->feed_error( $feed );
-
         // Start output
         $output  = '<div class="tweeple tweeple-feed tweeple-feed-shortcode">';
         $output .= '<div class="tweeple-inner">';
 
-        if( $error  ) {
+        if( tweeple_error( $feed ) ) {
 
             // Display error
-            $output .= sprintf( '<p>%s</p>', $error );
+            $output .= sprintf( '<p>%s</p>', tweeple_error( $feed ) );
 
         } else {
 
@@ -211,18 +208,5 @@ class Tweeple {
         $output .= '</div><!-- .tweeple-feed-shortcode (end) -->';
 
         return apply_filters( 'tweeple_feed_shortcode', $output, $atts['id'], $feed );
-    }
-
-    /**
-     * Check a feed for errors
-     *
-     * @since 0.1.0
-     */
-    public function feed_error( $feed ) {
-
-        if( ! empty( $feed['error'] ) )
-            return $feed['error'];
-
-        return null;
     }
 }

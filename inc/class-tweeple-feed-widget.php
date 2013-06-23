@@ -37,10 +37,6 @@ class Tweeple_Feed_Widget extends WP_Widget {
 		$tweeple_feed = new Tweeple_Feed( $instance['feed_id'] );
 		$feed = $tweeple_feed->get_feed();
 
-		// Check for error
-        $tweeple = Tweeple::get_instance();
-        $error = $tweeple->feed_error( $feed );
-
 		// Display widget
 		echo $before_widget;
 
@@ -51,10 +47,10 @@ class Tweeple_Feed_Widget extends WP_Widget {
 		echo '<div class="tweeple tweeple-feed tweeple-feed-widget">';
         echo '<div class="tweeple-inner">';
 
-        if( $error ) {
+        if( tweeple_error( $feed ) ) {
 
             // Display error
-            printf( '<p>%s</p>', $error );
+            printf( '<p>%s</p>', tweeple_error( $feed ) );
 
         } else {
 

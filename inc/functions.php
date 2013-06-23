@@ -218,3 +218,18 @@ function tweeple_get_tweet_element_default( $feed, $options ) {
 /* (2) Helpers
 /*------------------------------------------------------------*/
 
+/**
+ * Get error for a Twitter feed.
+ *
+ * @since 0.5.0
+ *
+ * @param string $feed A Twitter feed
+ * @return string Error message for a feed, or null if no error.
+ */
+function tweeple_error( $feed ) {
+
+	if( ! empty( $feed['error'] ) )
+		return $feed['error'];
+
+	return null;
+}
