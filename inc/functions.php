@@ -276,7 +276,7 @@ function tweeple_get_tweet_meta( $tweet ) {
  */
 function tweeple_show_tweet_meta( $feed ) {
 
-	if( isset( $feed['meta'] ) && $feed['meta'] == 'yes' )
+	if( isset( $feed['time'] ) && $feed['time'] == 'yes' )
 		return true;
 
 	return false;
