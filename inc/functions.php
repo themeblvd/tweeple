@@ -36,13 +36,8 @@ function tweeple_get_display_default( $feed ) {
 		$text = apply_filters( 'tweeple_tweet_text', $tweet['text'], $tweet, $feed );
 		$output .= sprintf( '<div class="tweet-text">%s</div>', $text );
 
-		if( $feed['time'] == 'yes' ) {
-			$output .= '<div class="tweet-time">';
-			ob_start();
-			do_action( 'tweeple_tweet_meta', $tweet );
-			$output .= ob_get_clean();
-			$output .= '</div>';
-		}
+		if( tweeple_show_tweet_meta( $feed ) )
+			$output .= sprintf( '<div class="tweet-meta tweet-time">%s</div>', tweeple_get_tweet_meta( $tweet ) );
 
 		$output .= '</div><!-- .tweet-wrap (end) -->';
 		$output .= '</li>';
@@ -195,7 +190,7 @@ function tweeple_get_tweet_element_default( $feed, $options ) {
 		$text = apply_filters( 'tweeple_tweet_text', $tweet['text'], $tweet, $feed );
 		$output .= sprintf( '<div class="tweet-text tweet-content">%s</div>', $text );
 
-		if( $feed['time'] == 'yes' ) {
+		if( tweeple_show_tweet_meta( $feed ) ) {
 
 			$meta = tweeple_get_tweet_meta_fancy( $tweet );
 
@@ -232,4 +227,44 @@ function tweeple_error( $feed ) {
 		return $feed['error'];
 
 	return null;
+}
+
+/**
+ * Display meta for a Tweet.
+ *
+ * @since 0.5.0
+ *
+ * @param array $tweet Information for current tweet being displayed
+ */
+function tweeple_tweet_meta( $tweet ) {
+	do_action( 'tweeple_tweet_meta', $tweet );
+}
+
+/**
+ * Get display meta for a Tweet.
+ *
+ * @since 0.5.0
+ *
+ * @param array $tweet Information for current tweet being displayed
+ * @return string The meta infor for the Tweet
+ */
+function tweeple_get_tweet_meta( $tweet ) {
+	ob_start();
+	do_action( 'tweeple_tweet_meta', $tweet );
+	return ob_get_clean();
+}
+
+/**
+ * Whether to show meta for a Tweet or not.
+ *
+ * @since 0.5.0
+ *
+ * @param array $feed A Twitter feed
+ */
+function tweeple_show_tweet_meta( $feed ) {
+
+	if( isset( $feed['meta'] ) && $feed['meta'] == 'yes' )
+		return true;
+
+	return false;
 }

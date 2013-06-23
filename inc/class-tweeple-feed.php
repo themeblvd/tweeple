@@ -204,7 +204,7 @@ class Tweeple_Feed {
                 'result_type'       => get_post_meta( $this->feed_id, 'result_type', true ),
                 'exclude_retweets'  => get_post_meta( $this->feed_id, 'exclude_retweets', true ),
                 'exclude_replies'   => get_post_meta( $this->feed_id, 'exclude_replies', true ),
-                'time'              => get_post_meta( $this->feed_id, 'time', true ),
+                'meta'              => get_post_meta( $this->feed_id, 'time', true ), // "Meta" - but internally stored as "time" for backwards compat
                 'count'             => get_post_meta( $this->feed_id, 'count', true ), // Display count, NOT raw count.
                 'tweets'            => null
             );

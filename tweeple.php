@@ -59,7 +59,7 @@ function tweeple_hooks(){
     // Display Shortcode
     add_action( 'tweeple_display_shortcode', 'tweeple_display_default' );
 
-    // Timestamp
+    // Tweet Meta
     add_action( 'tweeple_tweet_meta', 'tweeple_tweet_meta_default' );
     // add_action( 'tweeple_tweet_meta', 'tweeple_tweet_meta_fancy' );
 
