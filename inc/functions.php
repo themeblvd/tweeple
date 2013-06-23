@@ -230,6 +230,19 @@ function tweeple_error( $feed ) {
 }
 
 /**
+ * Get a Twitter feed.
+ *
+ * @since 0.5.0
+ *
+ * @param mixed $feed_id An ID of a tweeple_feed post
+ * @return array The feed options and Tweets
+ */
+function tweeple_get_feed( $feed_id ) {
+	$tweeple_feed = new Tweeple_Feed( $feed_id );
+	return $tweeple_feed->get_feed();
+}
+
+/**
  * Display meta for a Tweet.
  *
  * @since 0.5.0

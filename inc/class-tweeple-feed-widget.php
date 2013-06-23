@@ -33,9 +33,8 @@ class Tweeple_Feed_Widget extends WP_Widget {
 			return;
 		}
 
-		// Get Twitter Feed
-		$tweeple_feed = new Tweeple_Feed( $instance['feed_id'] );
-		$feed = $tweeple_feed->get_feed();
+		// Get new Twitter feed, or cached result
+		$feed = tweeple_get_feed( $instance['feed_id'] );
 
 		// Display widget
 		echo $before_widget;

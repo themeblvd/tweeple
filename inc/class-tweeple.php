@@ -182,9 +182,8 @@ class Tweeple {
         if( empty( $atts['id'] ) )
             return __( 'No Twitter feed ID given.', 'tweeple' );
 
-        // Get Twitter Feed
-        $tweeple_feed = new Tweeple_Feed( $atts['id'] );
-        $feed = $tweeple_feed->get_feed();
+        // Get new Twitter feed, or cached result
+        $feed = tweeple_get_feed( $atts['id'] );
 
         // Start output
         $output  = '<div class="tweeple tweeple-feed tweeple-feed-shortcode">';

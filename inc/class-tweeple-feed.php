@@ -23,7 +23,7 @@ class Tweeple_Feed {
      */
     public function __construct( $feed_id = 0 ) {
 
-        $this->feed_id = $feed_id;
+        $this->feed_id = intval( $feed_id );
         $this->do_cache = apply_filters( 'tweeple_do_cache', true );
         $this->do_entities = apply_filters( 'tweeple_do_entities', false );
 
