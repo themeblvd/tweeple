@@ -130,6 +130,7 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 * Tweet "Time" in admin is now "Details" for better referencing.
 * Action hook `tweeple_tweet_time` changed to `tweeple_tweet_meta` and hooked functions also use term "meta" instead of "time".
 * Started library of helper functions that can be used for templating -- See */inc/functions.php*
+* Developers can now merge multiple Twitter feeds, keeping Tweets all arranged chronilogically. -- [See code example](https://github.com/themeblvd/Tweeple/wiki/Merging-multiple-Twitter-feeds)
 * Fixed "Tweet" element from last update in Theme Blvd framework v2-2.2.
 * Minor improvements to error handling for end-user when fetching from Twitter.
 * Minor improvements to Add/Edit Twitter feeds form.
