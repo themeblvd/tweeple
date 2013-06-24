@@ -247,28 +247,56 @@ function tweeple_get_feed( $feed_id ) {
  *
  * @since 0.5.0
  *
- * @param array $feed A Twitter feed or bigger array of multiple twitter feeds.
+ * @param array $feeds A single Twitter feed or array of multiple twitter feeds.
  * @return array Tweets to display in chronological order
  */
-function tweeple_get_tweets( $feed ) {
+function tweeple_get_tweets( $feeds ) {
 
-	if( ! is_array( $feed ) )
+	if( ! is_array( $feeds ) )
 		return null;
 
 	// If this is a single Twitter feed
-	if( isset( $feed['tweets'] ) )
-		return $feed['tweets'];
+	if( isset( $feeds['tweets'] ) ) {
+		if( is_array( $feeds['tweets'] ) )
+			return $feeds['tweets'];
+		else
+			return array();
+	}
 
 	// If this is a single Twitter feed, but for
 	// some reason, passed in a bigger array
-	if( count( $feed ) == 1 ) {
-		if( isset( $feed[0]['tweets'] ) )
-			return $feed[0]['tweets'];
+	if( count( $feeds ) == 1 ) {
+		if( isset( $feeds[0]['tweets'] ) && is_array( $feeds[0]['tweets'] ) )
+			return $feeds[0]['tweets'];
 		else
-			return null;
+			return array();
 	}
 
-	// ... @todo do merging now
+	// Merge multiple Twitter feeds
+	$tweets = array();
+	foreach( $feeds as $feed ) {
+		if( isset( $feed['tweets'] ) && is_array( $feed['tweets'] ) ) {
+			$tweets = array_merge( $tweets, $feed['tweets'] );
+		}
+	}
+
+	// Re-sort new merged array chronilogically.
+	uasort( $tweets, 'tweeple_do_time_compare' );
+
+	return $tweets;
+
+}
+
+/**
+ * A callback for uasort() to merge Twitter
+ * feeds and arrange chronicalogically.
+ *
+ * @since 0.5.0
+ */
+function tweeple_do_time_compare( $item1, $item2 ) {
+	$ts1 = strtotime( $item1['time'] );
+	$ts2 = strtotime( $item2['time'] );
+	return $ts2 - $ts1;
 }
 
 /**
