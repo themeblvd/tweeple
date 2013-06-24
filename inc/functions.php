@@ -17,12 +17,12 @@ function tweeple_display_default( $tweets, $options ) {
  *
  * @since 0.1.0
  */
-function tweeple_get_display_default( $tweets, $options ) {
+function tweeple_get_display_default( $tweets, $options = array() ) {
 
 	$output = '';
 
-	// Check for Tweets
-	if( ! $tweets )
+	// Some basic error checking.
+	if( ! $tweets || ! is_array( $tweets ) || count( $tweets ) < 1 )
 		return __('No tweets to display.', 'tweeple');
 
 	$output .= '<ul class="tweets">';
