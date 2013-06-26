@@ -122,6 +122,8 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.6.0 =
 
+* Fixed "Exclude @replies" bug that resulted from 0.5 update.
+
 = 0.5.0 =
 
 * **Clear your Twitter feed caches, at Tools > Tweeple > Twitter Feeds, after this update.**
