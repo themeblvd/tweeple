@@ -121,6 +121,8 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.8.0 =
 
+* Added option to control UTF-8 encoding on Twitter Feeds.
+
 = 0.7.0 =
 
 * Fixed issues where cache would return 'a' instead of list of tweets when a non unicode character is in a tweet. (props @nielsvr)

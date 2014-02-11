@@ -438,7 +438,7 @@ class Tweeple_Feed {
             // Build new Tweet
             $new_tweet = array(
                 'id_str'                    => $tweet['id_str'],
-                'text'                      => utf8_encode($tweet['text']),
+                'text'                      => $tweet['text'],
                 'time'                      => $tweet['created_at'],
                 'author'                    => $tweet['user']['screen_name'],
                 'profile_image_url'         => $tweet['user']['profile_image_url'],
@@ -448,6 +448,12 @@ class Tweeple_Feed {
                 'source'                    => $tweet['source'],
                 'lang'                      => $tweet['lang']
             );
+
+            // UTF-8 encoding
+            $encode = get_post_meta( $this->feed_id, 'encode', true );
+            if ( $encode != 'no' ) {
+                $new_tweet['text'] = utf8_encode( $new_tweet['text'] );
+            }
 
             if ( $this->do_entities && isset( $tweet['entities'] ) ) {
                 $new_tweet['entities'] = $tweet['entities'];

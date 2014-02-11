@@ -361,6 +361,7 @@ class Tweeple_Admin {
 			'exclude_replies'	=> 'no',			// Exclude @replies? (timeline only)
 			'time'				=> 'yes',			// Display time?
 			'count'				=> '3',				// Num of tweets to pull
+			'encode'			=> 'yes',			// Whether to UTF-8 encode tweets or not
 			'cache'				=> '7200', 			// 2 hours
 			'raw_count'			=> '10' 			// Raw tweet count from response before any parsing
 		));
@@ -621,6 +622,29 @@ class Tweeple_Admin {
 						</div>
 					</div><!-- .section (end) -->
 
+					<div class="section col-wrap">
+						<div class="col-left">
+							<div class="col-inner control">
+								<h4><?php _e('UTF-8 Text Encoding', 'tweeple'); ?></h4>
+								<select name="encode">
+									<option value="yes" <?php selected( 'yes', $value['encode'] ); ?>>
+										<?php _e( 'Yes', 'tweeple' ); ?>
+									</option>
+									<option value="no" <?php selected( 'no', $value['encode'] ); ?>>
+										<?php _e( 'No', 'tweeple' ); ?>
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-right">
+							<div class="col-inner">
+								<div class="desc">
+									<p><?php _e( 'If you\'re having problems displaying characters or words in your language, try disabling UTF-8 encoding.', 'tweeple' ); ?></p>
+								</div>
+							</div>
+						</div>
+					</div><!-- .section (end) -->
+
 				</div><!-- .postbox (end) -->
 
 				<!-- FEED SETUP (end) -->
@@ -779,6 +803,7 @@ class Tweeple_Admin {
 			'exclude_replies'	=> $_POST['exclude_replies'],
 			'count'				=> $_POST['count'],
 			'time'				=> $_POST['time'],
+			'encode'			=> $_POST['encode'],
 			'cache'				=> $_POST['cache'],
 			'raw_count'			=> $_POST['raw_count']
 		);
@@ -1074,6 +1099,7 @@ class Tweeple_Admin {
 			'exclude_replies'	=> get_post_meta( $post_id, 'exclude_replies', true ),
 			'time'				=> get_post_meta( $post_id, 'time', true ),
 			'count'				=> get_post_meta( $post_id, 'count', true ),
+			'encode'			=> get_post_meta( $post_id, 'encode', true ),
 			'cache'				=> get_post_meta( $post_id, 'cache', true ),
 			'raw_count'			=> get_post_meta( $post_id, 'raw_count', true )
 		);
