@@ -114,7 +114,7 @@ class Tweeple_Admin {
 		<div id="tweeple">
 			<div class="wrap">
 
- 				<?php screen_icon( 'tweeple' ); ?>
+ 				<div class="tb-screen-icon" id="icon-tweeple"></div>
 
 				<h2 class="nav-tab-wrapper tweeple-nav-tab-wrapper">
 					<a href="<?php echo admin_url( $this->parent.'?page=tweeple&tab=feeds' ); ?>" class="nav-tab<?php if ($active == 'feeds') echo ' nav-tab-active'; ?>">

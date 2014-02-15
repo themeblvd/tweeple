@@ -121,6 +121,8 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.9.0 =
 
+* Admin style changes for WordPress 3.8+
+
 = 0.8.0 =
 
 * Added option to control UTF-8 encoding on Twitter Feeds.
