@@ -2,7 +2,7 @@
 Author URI: http://www.themeblvd.com
 Contributors: themeblvd
 Tags: twitter, api, status, tweets, list, favorites, tmhOAuth, Theme Blvd, themeblvd, Jason Bobich
-Stable Tag: 0.9.0
+Stable Tag: 0.9.1
 
 Setup Twitter feeds to pull a user's public timeline, public list, favorite tweets, or a custom search term, phrase, or hashtag.
 

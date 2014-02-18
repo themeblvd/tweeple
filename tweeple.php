@@ -25,7 +25,7 @@ License: GPL2
 
 */
 
-define( 'TWEEPLE_PLUGIN_VERSION', '0.9.0' );
+define( 'TWEEPLE_PLUGIN_VERSION', '0.9.1' );
 define( 'TWEEPLE_PLUGIN_DIR', dirname( __FILE__ ) );
 define( 'TWEEPLE_PLUGIN_URI', plugins_url( '' , __FILE__ ) );
 define( 'TWEEPLE_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
