@@ -119,6 +119,10 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 == Changelog ==
 
+= 0.9.1 =
+
+* Fixed Twitter icon for Recent Tweet element added to Layout Builder.
+
 = 0.9.0 =
 
 * Admin style changes for WordPress 3.8+
