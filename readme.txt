@@ -121,6 +121,8 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.9.2 =
 
+* Added support for multiple feeds in shortcode. Ex: `[tweeple_feed id="1,2,3"]`
+
 = 0.9.1 =
 
 * Fixed Twitter icon for Recent Tweet element added to Layout Builder.
