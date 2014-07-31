@@ -50,7 +50,10 @@ add_action( 'plugins_loaded', 'tweeple_init' );
  */
 function tweeple_hooks(){
 
-    // Filter the text of a tweet.
+    // Remove characters and symbols that won't display in website
+    add_filter( 'tweeple_tweet_text', 'tweeple_tweet_clean' );
+
+    // Filter the text of a tweet
     add_filter( 'tweeple_tweet_text', 'tweeple_tweet_text_default' );
 
     // Display Widget
