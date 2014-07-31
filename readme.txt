@@ -121,7 +121,9 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.9.2 =
 
+* Changed wording in admin to reflect new Twitter verbiage "API key" and "API secret" which were formerly "Consumer key" and "Consumer secret".
 * Added support for multiple feeds in shortcode. Ex: `[tweeple_feed id="1,2,3"]`
+* Further improvements to support for international characters.
 
 = 0.9.1 =
 
