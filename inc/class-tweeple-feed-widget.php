@@ -16,7 +16,7 @@ class Tweeple_Feed_Widget extends WP_Widget {
 			'classname' 	=> 'tweeple-feed-widget',
 			'description' 	=> 'Display a Twitter feed setup from Tools > Tweeple.'
 		);
-        $this->WP_Widget( 'tweeple_feed_widget', 'Tweeple Twitter Feed', $widget_ops );
+        parent::__construct( 'tweeple_feed_widget', 'Tweeple Twitter Feed', $widget_ops );
 	}
 
 	/**

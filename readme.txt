@@ -121,6 +121,8 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.9.3 =
 
+* Fixed WordPress 4.3 deprecated PHP4 style constructors.
+
 = 0.9.2 =
 
 * Changed wording in admin to reflect new Twitter verbiage "API key" and "API secret" which were formerly "Consumer key" and "Consumer secret".
