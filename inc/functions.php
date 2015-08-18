@@ -79,13 +79,13 @@ function tweeple_tweet_text_default( $text ) {
 	$text = preg_replace('/\b(?<!:\/\/)(www\.[\w_.\-]+\.[a-zA-Z]{2,6}[\/\w\-~.?=&%#+$*!]*)\b/i',"<a href=\"http://$1\" class=\"twitter-link\" target=\"_blank\">$1</a>", $text);
 
 	// Format emails - you@yourmail.com
-	$text = preg_replace("/\b([a-zA-Z][a-zA-Z0-9\_\.\-]*[a-zA-Z]*\@[a-zA-Z][a-zA-Z0-9\_\.\-]*[a-zA-Z]{2,6})\b/i","<a href=\"mailto://$1\" class=\"twitter-link\">$1</a>", $text);
+	$text = preg_replace("/\b([a-zA-Z][a-zA-Z0-9\_\.\-]*[a-zA-Z]*\@[a-zA-Z][a-zA-Z0-9\_\.\-]*[a-zA-Z]{2,6})\b/i","<a href=\"mailto:$1\" class=\"twitter-link\">$1</a>", $text);
 
 	// Format hash tags as links - #whatever
 	$text = preg_replace("/#(\w+)/", "<a class=\"twitter-link\" href=\"https://twitter.com/search?q=%23\\1\" target=\"_blank\">#\\1</a>", $text);
 
 	// Format @username as links
-	$text = preg_replace("/@(\w+)/", "<a class=\"twitter-link\" href=\"http://twitter.com/\\1\" target=\"_blank\">@\\1</a>", $text);
+	$text = preg_replace("/^@(\w+)/", "<a class=\"twitter-link\" href=\"http://twitter.com/\\1\" target=\"_blank\">@\\1</a>", $text);
 
     return $text;
 }

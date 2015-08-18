@@ -121,6 +121,7 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.9.3 =
 
+* Fixed incorrect formatting of email addresses in tweets.
 * Fixed WordPress 4.3 deprecated PHP4 style constructors.
 
 = 0.9.2 =
