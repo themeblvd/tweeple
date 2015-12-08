@@ -43,10 +43,12 @@ class Tweeple_Feed_Widget extends WP_Widget {
 		echo $before_widget;
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
-		if ( ! empty( $title ) )
-			echo $before_title.$title.$after_title;
 
-		echo '<div class="tweeple tweeple-feed tweeple-feed-widget">';
+		if ( ! empty( $title ) ) {
+			echo $before_title.$title.$after_title;
+		}
+
+		echo '<div class="tweeple tweeple-feed tweeple-feed-widget feed-'. $instance['feed_id'] .'">';
         echo '<div class="tweeple-inner">';
 
         if ( ! tweeple_error( $feed ) ) {
