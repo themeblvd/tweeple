@@ -255,12 +255,13 @@ class Tweeple_Feed {
 
             // Setup the time the feed will be cached.
             $cache_time = intval( esc_attr( get_post_meta( $this->feed_id, 'cache', true ) ) );
+
             if ( ! $cache_time ) {
                 $cache_time = 7200; // 2 hours
             }
 
             // Cache it.
-            set_transient( 'tweeple_'.$this->feed_id, $this->feed, $cache_time );
+            set_transient( 'tweeple_'.$this->feed_id, $this->feed, apply_filters('tweeple_cache_time', $cache_time, $this->feed_id) );
 
         }
 

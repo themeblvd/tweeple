@@ -121,6 +121,8 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.9.4 - 12/08/2015 =
 
+* Added filter `tweeple_cache_time` for manually filtering the cache time on a given feed.
+
 = 0.9.3 - 08/18/2015 =
 
 * Fixed incorrect formatting of email addresses in tweets.
