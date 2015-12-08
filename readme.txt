@@ -119,7 +119,7 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 == Changelog ==
 
-= 0.9.4 - 12/08/2015 =
+= 0.9.4 - XX/XX/XXXX =
 
 * Added filter `tweeple_cache_time` for manually filtering the cache time on a given feed.
 
