@@ -119,38 +119,38 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 == Changelog ==
 
-= 0.9.3 =
+= 0.9.3 - 08/18/2015 =
 
 * Fixed incorrect formatting of email addresses in tweets.
 * Fixed WordPress 4.3 deprecated PHP4 style constructors.
 
-= 0.9.2 =
+= 0.9.2 - 07/31/2014  =
 
 * Changed wording in admin to reflect new Twitter verbiage "API key" and "API secret" which were formerly "Consumer key" and "Consumer secret".
 * Added support for multiple feeds in shortcode. Ex: `[tweeple_feed id="1,2,3"]`
 * Further improvements to support for international characters.
 
-= 0.9.1 =
+= 0.9.1 - 02/18/2014  =
 
 * Fixed Twitter icon for Recent Tweet element added to Layout Builder.
 
-= 0.9.0 =
+= 0.9.0 - 02/15/2014  =
 
 * Admin style changes for WordPress 3.8+
 
-= 0.8.0 =
+= 0.8.0 - 02/11/2014  =
 
 * Added option to control UTF-8 encoding on Twitter Feeds.
 
-= 0.7.0 =
+= 0.7.0 - 02/08/2014 =
 
 * Fixed issues where cache would return 'a' instead of list of tweets when a non unicode character is in a tweet. (props @nielsvr)
 
-= 0.6.0 =
+= 0.6.0 - 06/26/2013 =
 
 * Fixed "Exclude @replies" bug that resulted from 0.5 update.
 
-= 0.5.0 =
+= 0.5.0 - 06/24/2013 =
 
 * **Clear your Twitter feed caches, at Tools > Tweeple > Twitter Feeds, after this update.**
 * Separated out "Tweet Display Limit" with new "Raw Tweet Count" performance option for number of Tweets. -- So, if you're excluding retweets or @replies, you'll want your raw Tweet count to be higher than your display limit.
@@ -165,18 +165,18 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 * Minor improvements to error handling for end-user when fetching from Twitter.
 * Minor improvements to Add/Edit Twitter feeds form.
 
-= 0.4.0 =
+= 0.4.0 - 06/20/2013 =
 
 * Added support for "Tweet" Builder element in Theme Blvd themes.
 
-= 0.3.0 =
+= 0.3.0 - 06/19/2013 =
 
 * Fixed CSS quirk with "Twitter Feeds" admin interface in Firefox.
 
-= 0.2.0 =
+= 0.2.0- 06/18/2013 =
 
 * Improved saving and handling notices for Authentication settings page.
 
-= 0.1.0 =
+= 0.1.0 - 06/18/2013 =
 
 * This is the first release.
