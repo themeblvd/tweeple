@@ -119,9 +119,10 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 == Changelog ==
 
-= 0.9.4 - XX/XX/XXXX =
+= 0.9.4 - 01/27/2016 =
 
 * Added filter `tweeple_cache_time` for manually filtering the cache time on a given feed.
+* More detailed frontend error message when Twitter API credentials haven't been setup by the user.
 
 = 0.9.3 - 08/18/2015 =
 

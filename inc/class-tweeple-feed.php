@@ -118,7 +118,13 @@ class Tweeple_Feed {
         $access = get_option( 'tweeple_access' );
 
         if ( ! $access ) {
+
             $this->error = __('No developer access for Twitter given.', 'tweeple');
+
+            if ( current_user_can('edit_theme_options') ) {
+                $this->error .= ' '.__('Setup your Twitter API credentials from WP Admin > Tools > Tweeple > Authentication.', 'tweeple');
+            }
+
             return;
         }
 
