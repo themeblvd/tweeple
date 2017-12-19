@@ -121,7 +121,7 @@ Note: We have safeguard implemented that does not allow you to set this less tha
 
 = 0.9.5 - 12/19/2017 =
 
-* Added FontAwesome 5 icon output to tweet list (for Theme Blvd Framework 2.7+ themes).
+* Added FontAwesome 5 compatibility (for Theme Blvd Framework 2.7+ themes).
 
 = 0.9.4 - 01/27/2016 =
 
