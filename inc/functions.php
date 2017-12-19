@@ -206,14 +206,24 @@ function tweeple_get_tweet_element_default( $tweets, $feed_options, $element_opt
 		$output .= sprintf( '<div class="%s">', $wrap_class );
 
 		if ( $icon ) {
-			if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '<' ) ) {
-				$output .= sprintf( '<div class="tweet-icon"><i class="icon-%s"></i></div>', $icon );
+
+			if ( function_exists( 'themeblvd_get_icon_class' ) ) { // Framework 2.7+
+
+				$output .= sprintf( '<div class="tweet-icon"><i class="%s"></i></div>', esc_attr( themeblvd_get_icon_class( $icon ) ) );
+
+			} elseif ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '<' ) ) {
+
+				$output .= sprintf( '<div class="tweet-icon"><i class="icon-%s"></i></div>', esc_attr( $icon ) );
+
 			} else {
-				$output .= sprintf( '<div class="tweet-icon"><i class="fa fa-%s"></i></div>', $icon );
+
+				$output .= sprintf( '<div class="tweet-icon"><i class="fa fa-%s"></i></div>', esc_attr( $icon ) );
+
 			}
 		}
 
 		$text = apply_filters( 'tweeple_tweet_text', $tweet['text'], $tweet, $feed_options );
+
 		$output .= sprintf( '<div class="tweet-text tweet-content">%s</div>', $text );
 
 		if ( tweeple_show_tweet_meta( $feed_options ) ) {

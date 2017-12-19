@@ -34,10 +34,15 @@ class Tweeple_Theme_Blvd {
      */
     private function __construct() {
 
-    	// Add Tweet element to Layout Builder
-    	add_filter( 'themeblvd_registered_elements', array( $this, 'registered_elements' ) );
-    	add_filter( 'themeblvd_core_elements', array( $this, 'core_elements' ) );
-    	add_action( 'themeblvd_tweeple_tweet', array( $this, 'tweet_element' ), 10, 2 );
+		// Add Tweet element to Layout Builder
+
+		add_filter( 'themeblvd_registered_elements', array( $this, 'registered_elements' ) );
+
+		add_filter( 'themeblvd_elements', array( $this, 'elements' ) );
+
+		add_action( 'themeblvd_tweeple_tweet', array( $this, 'tweet_element' ), 10, 2 ); // Framework 2.0 - 2.6.
+
+		add_action( 'themeblvd_element_tweeple_tweet', array( $this, 'tweet_element' ), 10, 2 ); // Framework 2.7+
 
     }
 
@@ -50,11 +55,17 @@ class Tweeple_Theme_Blvd {
     public function registered_elements( $elements ) {
 
     	if ( version_compare( TB_FRAMEWORK_VERSION, '2.2.0', '>=' ) ) {
-    		unset( $elements['tweet'] );
-    		$elements[] = 'tweeple_tweet';
-    	}
+
+			if ( isset( $elements['tweet'] ) ) {
+				unset( $elements['tweet'] );
+			}
+
+			$elements[] = 'tweeple_tweet';
+
+		}
 
     	return $elements;
+
     }
 
     /**
@@ -62,7 +73,7 @@ class Tweeple_Theme_Blvd {
      *
      * @since 0.4.0
      */
-    public function core_elements( $elements ) {
+    public function elements( $elements ) {
 
     	$tweeple = Tweeple::get_instance();
 
