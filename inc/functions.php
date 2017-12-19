@@ -32,6 +32,11 @@ function tweeple_get_display_default( $tweets, $options = array() ) {
 	foreach( $tweets as $tweet ) {
 
 		$output .= '<li class="tweet">';
+
+		if ( function_exists( 'themeblvd_get_icon_class' ) ) { // Theme Blvd Framework 2.7+.
+			$output .= sprintf( '<i class="%s"></i>', esc_attr( themeblvd_get_icon_class( 'twitter' ) ) );
+		}
+
 		$output .= '<div class="tweet-wrap">';
 
 		$text = apply_filters( 'tweeple_tweet_text', $tweet['text'], $tweet, $tweets, $options );
